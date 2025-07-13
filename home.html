@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | CodeMaster</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to CodeMaster</h1>
+    <p>Select a language to start learning</p>
+  </header>
+
+  <main class="language-grid" id="languageGrid">
+    <!-- Languages will be inserted here -->
+  </main>
+
+  <footer>
+    <p>© 2025 CodeMaster. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const languages = [
+      "C", "C++", "Java", "HTML", "CSS", "JavaScript",
+      "Python", "AI", "AIML", "Data Science & AI", "Data Science", "Cybersecurity"
+    ];
+
+    const grid = document.getElementById("languageGrid");
+
+    languages.forEach(lang => {
+      const card = document.createElement("div");
+      card.className = "language-card";
+      card.innerHTML = `<h3>${lang}</h3><button onclick="start('${lang}')">Start Learning</button>`;
+      grid.appendChild(card);
+    });
+
+    function start(language) {
+      localStorage.setItem("selectedLanguage", language);
+      window.location.href = "language.html"; // go to class list for that language
+    }
+  </script>
+</body>
+</html>

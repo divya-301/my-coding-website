@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson | CodeMaster</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="lessonTitle">Lesson Title</h1>
+    <p>Part of <span id="languageName"></span></p>
+  </header>
+
+  <main>
+    <section class="lesson-content">
+      <h2>What is a Variable in C?</h2>
+      <p>In C, a variable is a name given to a memory location. It is used to store data. Variables must be declared before they are used.</p>
+      <pre><code>
+int age = 20;
+printf("Age is %d", age);
+      </code></pre>
+    </section>
+
+    <section class="quiz-section">
+      <h3>Mock Test</h3>
+      <form id="quizForm">
+        <p>1. What is the correct syntax to declare an integer variable in C?</p>
+        <input type="radio" name="q1" value="a"> int x = 5;<br>
+        <input type="radio" name="q1" value="b"> integer x = 5;<br>
+        <input type="radio" name="q1" value="c"> var x = 5;<br><br>
+
+        <p>2. Which symbol is used to end a statement in C?</p>
+        <input type="radio" name="q2" value="a"> : <br>
+        <input type="radio" name="q2" value="b"> ; <br>
+        <input type="radio" name="q2" value="c"> . <br><br>
+
+        <button type="submit">Submit Test</button>
+      </form>
+      <p id="quizResult"></p>
+    </section>
+
+    <button id="nextBtn" disabled>Next Lesson</button>
+  </main>
+
+  <footer>
+    <p>© 2025 CodeMaster. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Set language and title
+    document.getElementById("languageName").textContent = localStorage.getItem("selectedLanguage") || "C";
+    document.getElementById("lessonTitle").textContent = "Variables in " + (localStorage.getItem("selectedLanguage") || "C");
+
+    const quizForm = document.getElementById("quizForm");
+    const result = document.getElementById("quizResult");
+    const nextBtn = document.getElementById("nextBtn");
+
+    quizForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const q1 = quizForm.q1.value;
+      const q2 = quizForm.q2.value;
+      if (q1 === "a" && q2 === "b") {
+        result.textContent = "✅ Passed! Next lesson unlocked.";
+        result.style.color = "green";
+        nextBtn.disabled = false;
+
+        // Save progress in localStorage
+        const lang = localStorage.getItem("selectedLanguage");
+        const progress = JSON.parse(localStorage.getItem("progress")) || {};
+        progress[lang] = (progress[lang] || 0) + 1;
+        localStorage.setItem("progress", JSON.stringify(progress));
+      } else {
+        result.textContent = "❌ Incorrect. Please try again.";
+        result.style.color = "red";
+      }
+    });
+
+    nextBtn.onclick = () => {
+      alert("Next lesson will load (link it to next topic).");
+      // Example: window.location.href = "lesson2.html";
+    };
+  </script>
+</body>
+</html>
